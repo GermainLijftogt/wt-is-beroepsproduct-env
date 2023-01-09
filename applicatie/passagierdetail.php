@@ -1,3 +1,22 @@
+<?php
+require_once 'db_connectie.php';
+global $verbinding;
+
+$psg = $_SESSION['psgnummer'];
+
+$query = 'select * from Passagier where passagiernummer = ?';
+$media = $verbinding->prepare($query);
+$media->execute([$psg]);
+$row = $media->fetch();
+
+$psgnummer = $row['passagiernummer'];
+$naam = $row['naam'];
+$vlucht = $row['vluchtnummer'];
+$geslacht = $row['geslacht'];
+$balie = $row['balienummer'];
+$stoel = $row['stoel'];
+$inchecktijdstip = $row['inchecktijdstip'];
+?>
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -7,20 +26,9 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-                <a href="medewerker.html">CheckinGelre</a>
-                <div class="dropdown">
-                    <button class="dropbutton">Menu</button>
-                    <div class="content">
-                        <a href="medewerker.html">Home</a>
-                        <a href="vluchtenmedewerker.html">Vluchtenoverzicht</a>
-                        <a href="passagierdetail.html">Passagierdetail</a>
-                        <a href="bagageinchecken.html">Bagage inchecken</a>
-                        <a href="vluchtAanmaken.html">Vlucht aanmaken</a>
-                    </div>
-                </div>
-                <a href="begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php
+        require_once 'headermedewerker.php';
+        ?>
         <h1>Daan de Wit:</h1>
         <div class="psginfo">
             <div class="psgdetail">

@@ -1,3 +1,7 @@
+<?php
+require_once 'db_connectie.php';
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -7,20 +11,9 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="medewerker.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="medewerker.html">Home</a>
-                    <a href="vluchtenmedewerker.html">Vluchtenoverzicht</a>
-                    <a href="passagierdetail.html">Passagierdetail</a>
-                    <a href="bagageinchecken.html">Bagage inchecken</a>
-                    <a href="vluchtAanmaken">Vlucht aanmaken</a>
-                </div>
-            </div>
-            <a href="begin.html" class="split">Uitloggen</a>   
-        </header>
+        <?php
+        require_once 'headermedewerker.php';
+        ?>
         
         <h1>Vluchtenoverzicht</h1>
         <p>Hier kunt u de komende vluchten inzien</p>
@@ -95,10 +88,10 @@
             </table>
         </div>
         <div>
-            <a href="VluchtAanmaken.html" class="vluchtaanmkn">Vlucht aanmaken?</a>
+            <a href="VluchtAanmaken.php" class="vluchtaanmkn">Vlucht aanmaken?</a>
         </div>
         <footer>
-            <a href="privacymedewerker.html">Privacyverklaring</a>
+            <a href="privacymedewerker.php">Privacyverklaring</a>
         </footer>
     </body>
 </html>

@@ -1,3 +1,42 @@
+<?php
+require_once 'db_connectie.php';
+
+global $verbinding;
+$medewerker = false;
+
+if (isset($_SESSION['login'])){
+    $medewerker = $_SESSION['login'];
+}
+
+if($medewerker){
+    header("location: medewerker.php");
+}
+
+if (
+    !empty($_POST['balie']) &&
+    !empty($_POST['wachtwoord'])
+) {
+    $balie = $_POST['balie'];
+    $wachtwoord = $_POST['wachtwoord'];
+
+    $data = $verbinding->prepare("select wachtwoord from Balie where balienummer = ?");
+    $data->execute([$balie]);
+
+    while ($row = $data->fetch()) {
+        $wachtwoord = $row['wachtwoord'];
+        $_SESSION['login'] = true;
+    }
+}
+if(
+    !empty($_POST['psgnummer'])
+) {
+    $_SESSION['psgnummer'] = $_POST['psgnummer'];
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -7,26 +46,30 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
+        <?php
+        if (!empty($_POST['Balie']) && !empty($_POST['wachtwoord'])){
+            echo $foutmelding_login;
+            }
+        ?>
         <header>
-            <a href="medewerkerinlog.html">CheckinGelre</a>
+            <a href="medewerkerinlog.php">CheckinGelre</a>
             <div class="dropdown">
                     <button class="dropbutton">Menu</button>
                     <div class="content">
                     </div>
             </div>
-            <a href="begin.html" class="split">Terug</a>
+            <a href="begin.php" class="split">Terug</a>
         </header>
 
         <h1 class="inloggen">Inloggen</h1>
         <div class="form">
-            <form action="medewerker.html">
-            <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
+            <form method ="post">
 
-                <label for="medewerkernummer">Medewerkernummer:</label>
-                <input id="medewerkernummer" placeholder="123456" type="text" name="medewerkernummer" required>
+                <label for="balie">Balie:</label>
+                <input id="balie" placeholder="balienummer" type="text" name="balie" value="<?php if(isset($balie)) echo $balie; ?>" required>
 
                 <label for="password">Wachtwoord:</label>
-                <input id="password" placeholder="Type hier uw via de mail gestuurde wachtwoord" type="password" name="password" required>
+                <input id="password" placeholder="Type hier uw wachtwoord" type="password" name="wachtwoord" required>
 
                 <label for="psgnummer">Passagiernummer: </label>
                 <input id="psgnummer" placeholder="123456" type="number" name="psgnummer">
@@ -35,7 +78,7 @@
             </form>
         </div>
         <footer class="footer">
-            <a href="privacyverklaring.html">Privacyverklaring</a>
+            <a href="privacyverklaring.php">Privacyverklaring</a>
         </footer>
     </body>
 </html>

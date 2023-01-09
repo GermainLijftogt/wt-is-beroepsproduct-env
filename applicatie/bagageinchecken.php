@@ -1,30 +1,27 @@
+<?php
+require_once 'db_connectie.php';
+global $verbinding;
+
+$naam = 'Daan';
+
+
+?>
 <!DOCTYPE html>
 <html lang="nl">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Inchecken</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="/css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="medewerker.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="medewerker.html">Home</a>
-                    <a href="vluchtenmedewerker.html">Vluchtenoverzicht</a>
-                    <a href="passagierdetail.html">Passagierdetail</a>
-                    <a href="bagageinchecken.html">Bagage inchecken</a>
-                    <a href="vluchtAanmaken.html">Vlucht aanmaken</a>
-                </div>
-            </div>
-            <a href="begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php
+        require_once 'headermedewerker.php';
+        ?>
 
-        <h1>Bagage van Daan inchecken</h1>
+        <h1>Bagage van <?php echo $naam?>  inchecken</h1>
 
-        <form action="medewerker.html">
+        <form action="medewerker.php">
         <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
 
             <label for="psgnummer">Passagiernummer:</label>
@@ -67,8 +64,8 @@
 
             <input type="submit" value="Bagage inchecken">
         </form>
-        <footer>
-            <a href="privacymedewerker.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

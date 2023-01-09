@@ -7,18 +7,9 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="home.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="home.html">Home</a>
-                    <a href="zelfservice.html">Zelfservice</a>
-                    <a href="vluchtenoverzicht.html">Vluchtenoverzicht</a>
-                </div>
-            </div>
-            <a href="Begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php
+            require_once 'headermedewerker.php';
+        ?>
 
         <article>
             <h1>Home</h1>

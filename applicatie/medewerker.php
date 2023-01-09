@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -7,29 +9,18 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="medewerker.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="medewerker.html">Home</a>
-                    <a href="vluchtenmedewerker.html">Vluchtenoverzicht</a>
-                    <a href="passagierdetail.html">Passagierdetail</a>
-                    <a href="bagageinchecken.html">Bagage inchecken</a>
-                    <a href="vluchtAanmaken.html">Vlucht aanmaken</a>
-                </div>
-            </div>
-            <a href="Begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php 
+        require_once 'headermedewerker.php'
+        ?>
         <div class="medewerkerbtn">
-            <a href="vluchtenmedewerker.html" class="medewerker">Wilt u vluchten inzien?</a>
-            <a href="passagierdetail.html" class="medewerker">Wilt u passagierdetails inzien?</a>
-            <a href="bagageinchecken.html" class="medewerker">Wilt u de bagage van passagier inchecken?</a>
-            <a href="vluchtAanmaken.html" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
+            <a href="vluchtenmedewerker.php" class="medewerker">Wilt u vluchten inzien?</a>
+            <a href="passagierdetail.php" class="medewerker">Wilt u passagierdetails inzien?</a>
+            <a href="bagageinchecken.php" class="medewerker">Wilt u de bagage van passagier inchecken?</a>
+            <a href="vluchtAanmaken.php" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
         </div>
 
         <footer class="footer">
-            <a href="privacymedewerker.html">Privacyverklaring</a>
+            <a href="privacymedewerker.php">Privacyverklaring</a>
         </footer>
     </body>
 </html>

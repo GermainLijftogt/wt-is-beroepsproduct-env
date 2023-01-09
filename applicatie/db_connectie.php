@@ -2,7 +2,7 @@
 
 // defined in 'variables.env'
 $db_host = 'database_server'; // de database server 
-$db_name = 'muziekschool';                    // naam van database
+$db_name = 'GelreAirport';                    // naam van database
 
 // defined in sql-script 'movies.sql'
 $db_user    = 'sa';                 // db user
@@ -23,4 +23,5 @@ function maakVerbinding() {
   return $verbinding;
 }
 
+session_start();
 ?>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -8,7 +12,7 @@
     </head>
     <body>
         <header>
-            <a href="begin.html">CheckinGelre</a>
+            <a href="begin.php">CheckinGelre</a>
             <div class="dropdown">
                 <button class="dropbutton">Menu</button>
                 <div class="content">
@@ -19,11 +23,11 @@
 
         <h1>Bent u een passagier of medewerker?</h1>
         <div class="beginbtn">
-            <a href="home.html" class="begin">Passagier</a>
-            <a href="medewerkerinlog.html" class="begin">Medewerker</a>
+            <a href="home.php" class="begin">Passagier</a>
+            <a href="medewerkerinlog.php" class="begin">Medewerker</a>
         </div>
         <footer class="footer">
-            <a href="privacyverklaring.html">Privacyverklaring</a>
+            <a href="privacyverklaring.php">Privacyverklaring</a>
         </footer>
     </body>
 </html>

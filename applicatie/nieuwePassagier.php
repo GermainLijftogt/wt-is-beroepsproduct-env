@@ -7,28 +7,19 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="medewerker.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="medewerker.html">Home</a>
-                    <a href="vluchtenmedewerker.html">Vluchtenoverzicht</a>
-                    <a href="passagierdetail.html">Passagierdetail</a>
-                    <a href="bagageinchecken.html">Bagage inchecken</a>
-                    <a href="vluchtAanmaken.html">Vlucht aanmaken</a>
-                </div>
-            </div>
-            <a href="begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php
+        require_once 'headermedewerker.php';
+        ?>
 
         <h1>Nieuwe passagier</h1>
         <div class="form">
         <form action="medewerker.html">
         <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
+            <label for="vluchtnummer">Oud vluchtnummer:</label>
+            <input id="vluchtnummer" placeholder="Bijvoorbeeld: 11111" type="number" name="vluchtnummer" required>
 
             <label for="vluchtnummer">Vluchtnummer:</label>
-            <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" required>
+            <input id="vluchtnummer" placeholder="Bijvoorbeeld: 11111" type="number" name="vluchtnummer" required>
 
             <label for="name">Naam:</label>
             <input id="name" placeholder="bijvoorbeeld: Jan de Wit" type="text" name="name" required>
