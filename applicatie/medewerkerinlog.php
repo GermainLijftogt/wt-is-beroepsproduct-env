@@ -3,13 +3,10 @@ require_once 'db_connectie.php';
 
 global $verbinding;
 $medewerker = false;
+$_SESSION['psg'] = false;
 
 if (isset($_SESSION['login'])){
     $medewerker = $_SESSION['login'];
-}
-
-if($medewerker){
-    header("location: medewerker.php");
 }
 
 if (
@@ -26,11 +23,18 @@ if (
         $wachtwoord = $row['wachtwoord'];
         $_SESSION['login'] = true;
     }
+    if (isset($_SESSION['login'])){
+        $medewerker = $_SESSION['login'];
+    }
+    if($medewerker){
+        header("location: medewerker.php");
+    }
 }
 if(
     !empty($_POST['psgnummer'])
 ) {
     $_SESSION['psgnummer'] = $_POST['psgnummer'];
+    $_SESSION['psg'] = true;
 }
 
 

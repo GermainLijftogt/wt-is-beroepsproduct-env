@@ -15,9 +15,7 @@
         <div class="form">
         <form action="medewerker.html">
         <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
-            <label for="vluchtnummer">Oud vluchtnummer:</label>
-            <input id="vluchtnummer" placeholder="Bijvoorbeeld: 11111" type="number" name="vluchtnummer" required>
-
+            
             <label for="vluchtnummer">Vluchtnummer:</label>
             <input id="vluchtnummer" placeholder="Bijvoorbeeld: 11111" type="number" name="vluchtnummer" required>
 

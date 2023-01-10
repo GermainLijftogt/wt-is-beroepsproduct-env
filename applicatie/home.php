@@ -1,3 +1,26 @@
+<?php
+require_once 'db_connectie.php';
+global $verbinding;
+
+$queryV = 'select TOP(6) vluchtnummer, vertrektijd, gatecode, maatschappijcode
+            from Vlucht
+            where vertrektijd > SYSDATETIME()
+            order by vertrektijd ASC';
+
+$queryB = 'select TOP(6) bestemming, count(vluchtnummer) as aantal_vluchten
+            from Vlucht
+            group by bestemming
+            order by aantal_vluchten DESC';
+
+$dataV = $verbinding->query($queryV);
+$dataB = $verbinding->query($queryB);
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -17,69 +40,39 @@
         </article>
         <h2>Komende vluchten:</h2>
         <div class="homevluchten">
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 111</h3>
-                <h4>Vertrektijd: 12:30</h4>
-                <h4>Gate: 1</h4>
-            </div>
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 112</h3>
-                <h4>Vertrektijd: 12:45</h4>
-                <h4>Gate: 3</h4>
-            </div>
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 113</h3>
-                <h4>Vertrektijd: 13:00</h4>
-                <h4>Gate: 6</h4>
-            </div>
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 114</h3>
-                <h4>Vertrektijd: 13:00</h4>
-                <h4>Gate: 8</h4>
-            </div>
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 115</h3>
-                <h4>Vertrektijd: 13:10</h4>
-                <h4>Gate: 5</h4>
-            </div>
-            <div>
-                <img src="Images/klm.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>vluchtnummer: 116</h3>
-                <h4>Vertrektijd: 13:40</h4>
-                <h4>Gate: 5</h4>
-            </div>
+            <?php 
+            while($rijV = $dataV->fetch()){
+                $vluchtnummer = $rijV['vluchtnummer'];
+                $vertrektijd = $rijV['vertrektijd'];
+                $gatecode = $rijV['gatecode'];
+                $maatschappijcode = $rijV['maatschappijcode'];
+            
+                echo '
+                <div>
+                    <img src="Images/'.$maatschappijcode.'.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
+                    <h3>Vluchtnummer:  '.$vluchtnummer.' </h3>
+                    <h4>Vertrektijd: '.$vertrektijd.'</h4>
+                    <h4>Gate: '.$gatecode.'</h4>
+                </div>
+                ';
+            }
+            ?>
         </div>
         <h2>bekende bestemmingen:</h2>
         <div class="homebestemmingen">
-            <div>
-                <img src="Images/dubai.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Dubai</h3>
-            </div>
-            <div>
-                <img src="Images/London.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Londen</h3>
-            </div>
-            <div>
-                <img src="Images/Cancun.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Cancun</h3>
-            </div>
-            <div>
-                <img src="Images/Bali.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Bali</h3>
-            </div>
-            <div>
-                <img src="Images/Kreta.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Kreta</h3>
-            </div>
-            <div>
-                <img src="Images/Rome.jpg" alt="foto van vliegtuig die op dit moment vertrekt">
-                <h3>Rome</h3>
-            </div>
+            <?php
+            while($rijB = $dataB->fetch()){
+                $bestemming = $rijB['bestemming'];
+                $aantal_vluchten = $rijB['aantal_vluchten'];
+
+                echo '
+                <div>
+                    <img src="Images/'.$bestemming.'.jpg" alt="foto van Bestemming">
+                    <h3>'.$bestemming.'</h3>
+                </div>
+                ';
+            }
+            ?>
         </div>
         <footer>
             <a href="privacyverklaring.html">Privacyverklaring</a>

@@ -10,15 +10,28 @@
     </head>
     <body>
         <?php 
-        require_once 'headermedewerker.php'
+        require_once 'headermedewerker.php';
+        
         ?>
         <div class="medewerkerbtn">
-            <a href="vluchtenmedewerker.php" class="medewerker">Wilt u vluchten inzien?</a>
-            <a href="passagierdetail.php" class="medewerker">Wilt u passagierdetails inzien?</a>
-            <a href="bagageinchecken.php" class="medewerker">Wilt u de bagage van passagier inchecken?</a>
-            <a href="vluchtAanmaken.php" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
+            <?php
+            if ($_SESSION['psg'] === true){
+                echo '
+                    <a href="vluchtenmedewerker.php" class="medewerker">Wilt u vluchten inzien?</a>
+                    <a href="passagierdetail.php" class="medewerker">Wilt u passagierdetails inzien?</a>
+                    <a href="bagageinchecken.php" class="medewerker">Wilt u de bagage van passagier inchecken?</a>
+                    <a href="vluchtAanmaken.php" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
+                    <a href="omboeken.php" class="medewerker">Wilt u omboeken?</a>
+                ';
+            }
+            else {
+                echo '
+                <a href="vluchtenmedewerker.php" class="medewerker">Wilt u vluchten inzien?</a>
+                <a href="nieuwePassagier.php" class="medewerker">Wilt u een vlucht boeken?</a>
+                ';
+            }
+            ?>
         </div>
-
         <footer class="footer">
             <a href="privacymedewerker.php">Privacyverklaring</a>
         </footer>

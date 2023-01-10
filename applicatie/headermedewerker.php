@@ -1,5 +1,12 @@
 <?php 
-if (isset($_SESSION)){
+require_once 'db_connectie.php';
+
+$medewerker = false;
+
+if (isset($_SESSION['login'])){
+    $medewerker = $_SESSION['login'];
+}
+if ($medewerker){
     echo'
     <header>
     <a href="medewerker.php">CheckinGelre</a>
@@ -13,10 +20,10 @@ if (isset($_SESSION)){
                 <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
             </div>
         </div>
-        <a href="Begin.php" class="split">Uitloggen</a>
+        <a href="uitloggen.php" class="split">Uitloggen</a>
     </header>
     ';
-} else if(!isset($_SESSION)){
+} else if(!$medewerker){
     echo 
     '
     <header>
