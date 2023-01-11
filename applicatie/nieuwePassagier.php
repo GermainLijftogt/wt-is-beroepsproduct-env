@@ -1,3 +1,35 @@
+<?php
+require_once 'db_connectie.php';
+global $verbinding;
+
+$querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
+$data = $verbinding->query($querypsg);
+$row = $data->fetch();
+$newpsg = $row['passagiernummer'] + 1;
+$vluchtnummer = 28761;
+
+
+$querystoelen = 'select stoel 
+from passagier 
+where stoel NOT IN 
+(select stoel
+from passagier
+where vluchtnummer = ?)
+group by stoel ';
+
+
+if(
+    !empty($_POST['vluchtnummer']) &&
+    !empty($_POST['name']) &&
+    !empty($_POST['geslacht']) &&
+    !empty($_POST['stoel'])
+    ) {
+        $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, balienummer, stoel, inchecktijdstip)
+        VALUES (?, ? ,? ,? , ?, ?, ?)';
+        $sql = $verbinding->prepare($query);
+        $sql->execute([$newpsg, $_POST['name'], $_POST['vluchtnummer'], $_POST['geslacht'], $_SESSION['balie'], $_POST['stoel'], date('d-m-y h:i:s')]);
+    }
+?>
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -13,40 +45,40 @@
 
         <h1>Nieuwe passagier</h1>
         <div class="form">
-        <form action="medewerker.html">
-        <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
-            
+        <form method="post">
+
             <label for="vluchtnummer">Vluchtnummer:</label>
-            <input id="vluchtnummer" placeholder="Bijvoorbeeld: 11111" type="number" name="vluchtnummer" required>
+            <input id="vluchtnummer" placeholder="bijvoorbeeld: 123456" type="number" name="vluchtnummer" value="<?php echo $vluchtnummer?>" required>
 
             <label for="name">Naam:</label>
             <input id="name" placeholder="bijvoorbeeld: Jan de Wit" type="text" name="name" required>
 
             <label for="geslacht">Geslacht:</label>
             <select name="geslacht" id="geslacht">
-                <option value="Man">Man</option>
-                <option value="Vrouw">Vrouw</option>
+                <option value="M">Man</option>
+                <option value="V">Vrouw</option>
+                <option value="">Niks</option>
             </select>
 
             <label for="stoel">Stoel:</label>
             <select name="stoel" id="stoel">
-                <option value="24c">24C</option>
-                <option value="24b">24B</option>
-            </select>
-
-            <label for="hvlbagage">Hoeveel bagage:</label>
-            <select name="hvlbagage" id="hvlbagage">
-                <option value="1">1 Tas</option>
-                <option value="2">2 Tassen</option>
-                <option value="3">3 Tassen</option>
-                <option value="4">4 Tassen</option>
+                <?php
+                    $dataS = $verbinding->prepare($querystoelen);
+                    $dataS->execute([$vluchtnummer]);
+                    while($rijS = $dataS->fetch()){
+                        $stoel = $rijS['stoel'];
+                        echo '
+                            <option value="'.$stoel.'">'.$stoel.'</option>
+                        ';
+                    }
+                ?>
             </select>
 
             <input type="submit" value="Nieuwe passagier invullen">
         </form>
     </div>
-        <footer>
-            <a href="privacymedewerker.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

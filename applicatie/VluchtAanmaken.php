@@ -1,5 +1,34 @@
 <?php
 require_once 'db_connectie.php';
+global $verbinding;
+
+$query = 'select max(vluchtnummer) as vlucht from Vlucht';
+$data = $verbinding->query($query);
+$rij = $data->fetch();
+$nieuwvlucht = $rij['vlucht']+1;
+
+if(!empty($_POST['bestemming']) &&
+    !empty($_POST['gatecode']) &&
+    !empty($_POST['maxntl'])) &&
+    !empty($_POST['maxkgpp']) &&
+    !empty($_POST['maxtotkg']) &&
+    !empty($_POST['datum']) &&
+    !empty($_POST['tijd']) &&
+    !empty($_POST['maatschappij'])
+    {
+        $bestemming = $_POST['bestemming'];
+        $gate = $_POST['gatecode'];
+        $maxntl = $_POST['maxntl'];
+        $maxkgpp = $_POST['maxkgpp'];
+        $maxtotkg = $_POST['maxtotkg'];
+        $date = date($_POST['datum'].$_POST['tijd']);
+        $maatschappij = $_POST['maatschappij'];
+
+        $query1 = 'INSERT INTO Vlucht (vluchtnummer, bestemming, gatecode, max_aantal, max_gewicht_pp, max_totaalgewicht, vertrektijd, maatschappijcode)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = $verbinding->prepare($query1);
+        $sql->execute([$nieuwvlucht, $bestemming, $gatecode, $max_aantal, $maxkgpp, $maxtotkg, $date, $maatschappij]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,17 +46,13 @@ require_once 'db_connectie.php';
 
         <h1 class="hvluchtmkn">Vlucht aanmaken</h1>
         <div class="form">
-            <form action="medewerker.html">
-            <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
-
-                <label for="vluchtnummer">Vluchtnummer:</label>
-                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" required>
+            <form method="POST"action="medewerker.php">
 
                 <label for="bestemming">Bestemming:</label>
-                <input id="bestemming" placeholder="Bijvoorbeeld: London" type="text" name="bestemming" required>
+                <input id="bestemming" placeholder="Bijvoorbeeld: OST" type="text" name="bestemming" required>
 
                 <label for="gatecode">Gatecode:</label>
-                <input id="gatecode" placeholder="Bijvoorbeeld: 1" type="number" name="gatecode" required>
+                <input id="gatecode" placeholder="Bijvoorbeeld: A" type="text" name="gatecode" required>
 
                 <label for="maxntl">Max Aantal</label>
                 <input id="maxntl" placeholder="bijvoorbeeld: 111" type="number" name="maxntl" required>
@@ -51,8 +76,8 @@ require_once 'db_connectie.php';
             </form>
         </div>
 
-        <footer class="footer">
-            <a href="privacymedewerker.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

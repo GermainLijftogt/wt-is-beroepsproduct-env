@@ -74,8 +74,8 @@ $dataB = $verbinding->query($queryB);
             }
             ?>
         </div>
-        <footer>
-            <a href="privacyverklaring.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

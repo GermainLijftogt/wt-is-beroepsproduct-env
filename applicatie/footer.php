@@ -1,3 +1,3 @@
 <footer>
-    <a href="privacymedewerker.php">Privacyverklaring</a>
+    <a href="privacyverklaring.php">Privacyverklaring</a>
 </footer>

@@ -4,7 +4,12 @@ global $verbinding;
 
 $psg = $_SESSION['psgnummer'];
 
-$query = 'select * from Passagier where passagiernummer = ?';
+$query = 'select p.passagiernummer, p.naam, p.vluchtnummer, p.geslacht, p.balienummer, p.stoel, p.inchecktijdstip, v.maatschappijcode, L.naam as vliegveld
+from Passagier P 
+join Vlucht V on P.vluchtnummer=V.vluchtnummer
+join Luchthaven L on V.bestemming=L.luchthavencode
+where passagiernummer = ?
+';
 $media = $verbinding->prepare($query);
 $media->execute([$psg]);
 $row = $media->fetch();
@@ -16,6 +21,8 @@ $geslacht = $row['geslacht'];
 $balie = $row['balienummer'];
 $stoel = $row['stoel'];
 $inchecktijdstip = $row['inchecktijdstip'];
+$maatschappij = $row['maatschappijcode'];
+$vliegveld = $row['vliegveld'];
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -29,7 +36,7 @@ $inchecktijdstip = $row['inchecktijdstip'];
         <?php
         require_once 'headermedewerker.php';
         ?>
-        <h1>Daan de Wit:</h1>
+        <h1><?php echo $naam ?>:</h1>
         <div class="psginfo">
             <div class="psgdetail">
                 <p>Passagiernummer:</p>
@@ -40,26 +47,32 @@ $inchecktijdstip = $row['inchecktijdstip'];
                 <p>Inchecktijdstip:</p>
             </div>
             <div class="info">
-                <p>123456</p>
-                <p>123456</p>
-                <p>Man</p>
-                <p>4</p>
-                <p>24C</p>
-                <p>21 November 2022 om 13:56</p>
+                <p><?php echo $psgnummer ?></p>
+                <p><?php echo $vlucht ?></p>
+                <p><?php echo $geslacht ?></p>
+                <p><?php echo $balie ?></p>
+                <p><?php echo $stoel ?></p>
+                <p><?php echo $inchecktijdstip ?></p>
             </div>
         </div>
-        <div>
-            <a href="bagageinchecken.html" class="incheck">Klik hier om in te checken</a>
-        </div>
+        <?php
+        if(!isset($inchecktijdstip)){
+            echo '
+            <div>
+                <a href="bagageinchecken.php" class="incheck">Klik hier om in te checken</a>
+            </div>
+            ';
+        } 
+        ?>
         <article class="vluchtinfo">
             <h2>Vluchtinformatie:</h2>
-            <p>Vluchtnummer 123456 gaat naar het mooie Dubai.</p>
-            <p>Er wordt gevlogen met KLM.</p>
+            <p>Vluchtnummer <?php echo $vlucht; ?> gaat naar het mooie <?php echo $vliegveld?>.</p>
+            <p>Er wordt gevlogen met <?php echo $maatschappij?>.</p>
             <p>Er worden snacks en drankjes verzorgd in het vliegtuig</p>
-            <img src="Images/klm.jpg" alt="vliegtuig van KLM" height="183" width="275">
+            <img src="Images/<?php echo $maatschappij?>.jpg" alt="vliegtuig van <?php echo $maatschappij?>" height="183" width="275">
         </article>
-        <footer>
-            <a href="privacymedewerker.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

@@ -22,8 +22,8 @@
             <a href="home.php" class="begin">Passagier</a>
             <a href="medewerkerinlog.php" class="begin">Medewerker</a>
         </div>
-        <footer class="footer">
-            <a href="privacyverklaring.php">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

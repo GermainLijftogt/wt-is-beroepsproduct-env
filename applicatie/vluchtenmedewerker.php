@@ -90,8 +90,8 @@ require_once 'db_connectie.php';
         <div>
             <a href="VluchtAanmaken.php" class="vluchtaanmkn">Vlucht aanmaken?</a>
         </div>
-        <footer>
-            <a href="privacymedewerker.php">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

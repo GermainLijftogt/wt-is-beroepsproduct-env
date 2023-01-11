@@ -54,8 +54,6 @@ if(!empty($_POST['gewicht'])) {
         <h1>Passagiernummer: <?php echo $psg ?></h1>
         <form method= "post">
 
-            
-
             <label for="typebagage">Type Bagage:</label>
             <select name="typebagage" id="typebagage">
                 <option value="handbagage">Handbagage</option>

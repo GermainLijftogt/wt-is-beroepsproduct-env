@@ -1,5 +1,32 @@
 <?php
 require_once 'db_connectie.php';
+global $verbinding;
+
+$querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
+$data1 = $verbinding->query($querypsg);
+$row = $data1->fetch();
+$newpsg = $row['passagiernummer'] + 1;
+$vluchtnummer = 28761;
+
+
+$psgnummer = $_SESSION['psgnummer'];
+
+$queryoud = 'select naam, geslacht from passagier where passagiernummer = ? ';
+$data = $verbinding->prepare($queryoud);
+$data->execute([$psgnummer]);
+while($rij = $data->fetch()){
+    $name = $rij['naam'];
+    $geslacht = $rij['geslacht'];
+}
+if(
+    !empty($_POST['vluchtnummer']) &&
+    !empty($_POST['stoel'])
+){
+$query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, balienummer, stoel, inchecktijdstip)
+    VALUES(?, ? ,? ,? , ?, ?, ?)';
+    $sql = $verbinding->prepare($query);
+    $sql->execute([$newpsg, $name, $_POST['vluchtnummer'], $geslacht, $_SESSION['balie'], $_POST['stoel'], date('d-m-y h:i:s')]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,27 +43,39 @@ require_once 'db_connectie.php';
         ?>
 
         <h1>Omboeken passagier</h1>
-        <p>Dit is voor vlucht <?php echo '11111'?></p>
+        <p>Dit is voor vlucht <?php echo $vluchtnummer;?></p>
         <div class="form">
-            <form action="medewerker.html">
-            <!-- bij alle forms moet nog: method="post". Dit heb ik gedaan zodat ik niet een speciale button moet maken maar zodat ik gewoon die uit de form kan gebruiken, anders kreeg ik foutmelding -->
+            <form method="post">
 
-                <label for="vluchtnummer">Oud vluchtnummer:</label>
-                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" required>
+                <label for="vluchtnummer">Nieuw vluchtnummer:</label>
+                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" value="<?php echo $vluchtnummer;?>"required>
 
-                <label for="psgnummer">Passagiernummer: </label>
-                <input id="psgnummer" placeholder="123456" type="number" name="psgnummer" required>
-
-                <label for="omboekdatum">Nieuwe datum:</label>
-                <input type="date" id="omboekdatum" name="omboekdatum" required>
-
-                
-
+                <label for="stoel">Stoel:</label>
+                <select name="stoel" id="stoel">
+                    <?php
+                        $querystoelen = 'select stoel 
+                        from passagier 
+                        where stoel NOT IN 
+                        (select stoel
+                        from passagier
+                        where vluchtnummer = ?)
+                        group by stoel ';
+                    
+                        $dataS = $verbinding->prepare($querystoelen);
+                        $dataS->execute([$vluchtnummer]);
+                        while($rijS = $dataS->fetch()){
+                            $stoel = $rijS['stoel'];
+                            echo '
+                                <option value="'.$stoel.'">'.$stoel.'</option>
+                            ';
+                        }
+                    ?>
+                </select>
                 <input type="submit" value="Omboeken">
             </form>
         </div>
-        <footer class="footer">
-            <a href="privacymedewerker.php">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

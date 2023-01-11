@@ -7,18 +7,9 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <header>
-            <a href="home.html">CheckinGelre</a>
-            <div class="dropdown">
-                <button class="dropbutton">Menu</button>
-                <div class="content">
-                    <a href="home.html">Home</a>
-                    <a href="zelfservice.html">Zelfservice</a>
-                    <a href="vluchtenoverzicht.html">Vluchtenoverzicht</a>
-                </div>
-            </div>
-            <a href="Begin.html" class="split">Uitloggen</a>
-        </header>
+        <?php
+        require_once 'headermedewerker.php';
+        ?>
 
         <article>
             <p>CheckinGelre, gevestigd aan Professor Molkenboerstraat 3, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.</p>
@@ -50,8 +41,8 @@
             <p>CheckinGelre neemt de bescherming van uw gegevens serieus en neemt passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Als u de indruk heeft dat uw gegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact op met onze klantenservice of via hulp@checkingelre.nl</p>
         </article>
         
-        <footer>
-            <a href="privacyverklaring.html">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>

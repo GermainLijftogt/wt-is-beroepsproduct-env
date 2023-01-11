@@ -32,11 +32,11 @@ if ($medewerker){
         <button class="dropbutton">Menu</button>
         <div class="content">
             <a href="home.php">Home</a>
-            <a href="zelfservice.php">Zelfservice</a>
+            <a href="psgzelfservice.php">Zelfservice</a>
             <a href="vluchtenoverzicht.php">Vluchtenoverzicht</a>
         </div>
     </div>
-    <a href="Begin.php" class="split">Uitloggen</a>
+    <a href="uitloggen.php" class="split">Uitloggen</a>
     </header>
     ';
 }

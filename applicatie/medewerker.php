@@ -32,8 +32,8 @@
             }
             ?>
         </div>
-        <footer class="footer">
-            <a href="privacymedewerker.php">Privacyverklaring</a>
-        </footer>
+        <?php
+        require_once 'footer.php';
+        ?>
     </body>
 </html>
