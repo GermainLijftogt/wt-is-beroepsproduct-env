@@ -6,7 +6,7 @@ $querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
 $data = $verbinding->query($querypsg);
 $row = $data->fetch();
 $newpsg = $row['passagiernummer'] + 1;
-$vluchtnummer = 28761;
+$vluchtnummer = $_GET['vluchtnummer'];
 
 
 $querystoelen = 'select stoel 

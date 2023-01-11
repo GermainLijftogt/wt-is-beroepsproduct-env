@@ -133,7 +133,7 @@ footer :hover{
   margin-bottom: 20px;
   resize: vertical
 }
- input[type=date],select, textarea{
+ input[type=datetime-local],select, textarea{
   width: 100%;
   border: 1px solid #24FAFF;
   border-radius: 10px;
@@ -143,16 +143,7 @@ footer :hover{
   margin-bottom: 20px;
   resize: vertical
 }
- input[type=time],select, textarea{
-  width: 100%;
-  border: 1px solid #24FAFF;
-  border-radius: 10px;
-  box-sizing: border-box;
-  padding: 15px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  resize: vertical
-}
+ 
  input[type=submit] {
   font-weight: bold;
   background-color: #24FAFF;

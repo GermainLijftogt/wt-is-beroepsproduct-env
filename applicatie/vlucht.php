@@ -46,6 +46,16 @@ if(isset($_GET['vluchtnummer'])){
             <p>plekken over: <?php echo $plekken_over; ?></p>
             <p>Vertrektijd: <?php echo $vertrektijd; ?></p>
             <p>Vliegmaatschappij: <?php echo $maatschappijcode; ?></p>
+            <?php
+            
+            if(isset($_SESSION['login'])){
+                if(!isset($_SESSION['psgnummer'])){
+                    echo ' 
+                    <a href="nieuwePassagier.php?vluchtnummer='.$vluchtnummer.'" class="newpsg">Passagier toevoegen</a>
+                    ';
+                }
+            }
+            ?>
             <img src="Images/<?php echo $maatschappijcode; ?>.jpg" alt="Vliegtuig van <?php echo $maatschappijcode ?>">
         </article>
         

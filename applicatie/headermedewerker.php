@@ -7,6 +7,7 @@ if (isset($_SESSION['login'])){
     $medewerker = $_SESSION['login'];
 }
 if ($medewerker){
+    if(isset($_SESSION['psgnummer'])){
     echo'
     <header>
     <a href="medewerker.php">CheckinGelre</a>
@@ -14,7 +15,7 @@ if ($medewerker){
         <button class="dropbutton">Menu</button>
             <div class="content">
                 <a href="medewerker.php">Home</a>
-                <a href="vluchtenmedewerker.php">Vluchtenoverzicht</a>
+                <a href="vluchtenoverzicht.php">Vluchtenoverzicht</a>
                 <a href="passagierdetail.php">Passagierdetail</a>
                 <a href="bagageinchecken.php">Bagage inchecken</a>
                 <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
@@ -23,6 +24,22 @@ if ($medewerker){
         <a href="uitloggen.php" class="split">Uitloggen</a>
     </header>
     ';
+    } else{
+        echo'
+    <header>
+    <a href="medewerker.php">CheckinGelre</a>
+    <div class="dropdown">
+        <button class="dropbutton">Menu</button>
+            <div class="content">
+                <a href="medewerker.php">Home</a>
+                <a href="vluchtenoverzicht.php">Vluchtenoverzicht</a>
+                <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
+            </div>
+        </div>
+        <a href="uitloggen.php" class="split">Uitloggen</a>
+    </header>
+    ';
+    }
 } else if(!$medewerker){
     echo 
     '

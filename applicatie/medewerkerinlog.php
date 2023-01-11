@@ -9,13 +9,11 @@ $medewerker = false;
 $_SESSION['psg'] = false;
 
 if (isset($_SESSION['login'])){
-    echo 'hallo1';
     $medewerker = $_SESSION['login'];
 }
 
 if($medewerker){
     header("location: medewerker.php");
-    echo 'hallo2';
 }
 
 if (
@@ -31,10 +29,7 @@ if (
     
     while ($row = $data->fetch()) {
         $hashed = $row['wachtwoord'];
-        echo $wachtwoord;
-        echo $hashed;
         if (password_verify($wachtwoord, $hashed)) {
-            echo 'hallo4';
             $_SESSION['login'] = true;
             $_SESSION['balie'] = $balie;
         }
@@ -43,22 +38,15 @@ if (
     
     if (isset($_SESSION['login'])){
         $medewerker = $_SESSION['login'];
-        echo 'hallo3';
-    }
-    if(!$medewerker){
-        $foutmelding_login = "Onjuiste inloggegevens";
-    }
-    if($medewerker){
-        $foutmelding_login = "";
         header('location: medewerker.php');
-        echo 'hallo5';
     }
+
 }
 
 if(
     !empty($_POST['psgnummer'])
 ) {
-    $_SESSION['psgnummer'] = 23452;
+    $_SESSION['psgnummer'] = $_POST['psgnummer'];
     $_SESSION['psg'] = true;
 }
 

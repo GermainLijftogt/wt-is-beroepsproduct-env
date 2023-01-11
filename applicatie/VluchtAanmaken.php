@@ -6,29 +6,35 @@ $query = 'select max(vluchtnummer) as vlucht from Vlucht';
 $data = $verbinding->query($query);
 $rij = $data->fetch();
 $nieuwvlucht = $rij['vlucht']+1;
+$queryL = 'select luchthavencode from Luchthaven';
+$queryG = 'select gatecode from Gate';
+$queryM = 'select maatschappijcode from Maatschappij';
 
-if(!empty($_POST['bestemming']) &&
+if (
+    !empty($_POST['bestemming']) &&
     !empty($_POST['gatecode']) &&
-    !empty($_POST['maxntl'])) &&
+    !empty($_POST['maxntl']) &&
     !empty($_POST['maxkgpp']) &&
     !empty($_POST['maxtotkg']) &&
     !empty($_POST['datum']) &&
     !empty($_POST['tijd']) &&
     !empty($_POST['maatschappij'])
-    {
+) {
         $bestemming = $_POST['bestemming'];
         $gate = $_POST['gatecode'];
         $maxntl = $_POST['maxntl'];
         $maxkgpp = $_POST['maxkgpp'];
         $maxtotkg = $_POST['maxtotkg'];
-        $date = date($_POST['datum'].$_POST['tijd']);
+        $date = $_POST['datum'];
         $maatschappij = $_POST['maatschappij'];
 
         $query1 = 'INSERT INTO Vlucht (vluchtnummer, bestemming, gatecode, max_aantal, max_gewicht_pp, max_totaalgewicht, vertrektijd, maatschappijcode)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        ';
         $sql = $verbinding->prepare($query1);
-        $sql->execute([$nieuwvlucht, $bestemming, $gatecode, $max_aantal, $maxkgpp, $maxtotkg, $date, $maatschappij]);
-    }
+        
+        $sql->execute([$nieuwvlucht, $bestemming, $date, $maxntl, $maxkgpp, $maxtotkg, NULL, $maatschappij]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,14 +52,33 @@ if(!empty($_POST['bestemming']) &&
 
         <h1 class="hvluchtmkn">Vlucht aanmaken</h1>
         <div class="form">
-            <form method="POST"action="medewerker.php">
+            <form method="POST">
 
                 <label for="bestemming">Bestemming:</label>
-                <input id="bestemming" placeholder="Bijvoorbeeld: OST" type="text" name="bestemming" required>
-
+                <select name="bestemming" id="bestemming">
+                    <?php
+                        $dataL = $verbinding->query($queryL);
+                        while($rijL = $dataL->fetch()){
+                            $luchthaven= $rijL['luchthavencode'];
+                            echo'
+                            <option value="'.$luchthaven.'">'.$luchthaven.'</option>
+                            ';
+                        }
+                    ?>
+                </select>
                 <label for="gatecode">Gatecode:</label>
-                <input id="gatecode" placeholder="Bijvoorbeeld: A" type="text" name="gatecode" required>
-
+                <select name="gatecode" id="gatecode">
+                    <?php
+                        $dataG = $verbinding->query($queryG);
+                        while($rijG = $dataG->fetch()){
+                            $gatecode = $rijG['gatecode'];
+                            echo'
+                            <option value="'.$gatecode.'">'.$gatecode.'</option>
+                            ';
+                        }
+                    ?>
+                </select>
+                
                 <label for="maxntl">Max Aantal</label>
                 <input id="maxntl" placeholder="bijvoorbeeld: 111" type="number" name="maxntl" required>
 
@@ -64,14 +89,20 @@ if(!empty($_POST['bestemming']) &&
                 <input id="maxtotkg" placeholder="Bijvoorbeeld: 1111" type="number" name="maxtotkg" required>
 
                 <label for="datum">Vertrekdatum:</label>
-                <input id="datum" type="date" name="datum" required>
-
-                <label for="tijd">Vertrektijd:</label>
-                <input id="tijd" type="time" name="tijd" required>
+                <input id="datum" type="datetime-local" name="datum" required>
 
                 <label for="maatschappij">Maatschappij:</label>
-                <input id="maatschappij" placeholder="Bijvoobeeld: RyanAir" type="text" name="maatschappij" required>
-
+                <select name="maatschappij" id="maatschappij">
+                    <?php
+                        $dataM = $verbinding->query($queryM);
+                        while($rijM = $dataM->fetch()){
+                            $maatschappijcode = $rijM['maatschappijcode'];
+                            echo'
+                            <option value="'.$maatschappijcode.'">'.$maatschappijcode.'</option>
+                            ';
+                        }
+                    ?>
+                
                 <input type="submit" value="Vlucht aanmaken">
             </form>
         </div>
