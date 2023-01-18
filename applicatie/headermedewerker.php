@@ -19,6 +19,7 @@ if ($medewerker){
                 <a href="passagierdetail.php">Passagierdetail</a>
                 <a href="bagageinchecken.php">Bagage inchecken</a>
                 <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
+                <a href="omboeken.php" class="medewerker">omboeken</a>
             </div>
         </div>
         <a href="uitloggen.php" class="split">Uitloggen</a>

@@ -5,8 +5,17 @@ global $verbinding;
 $querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
 $data1 = $verbinding->query($querypsg);
 $row = $data1->fetch();
-$newpsg = $row['passagiernummer'] + 1;
-$vluchtnummer = 28761;
+$psg = $row['passagiernummer'];
+$psgnummer = $psg+1;
+
+$queryvlucht = 'select vluchtnummer from passagier where passagiernummer = ?';
+$datavlucht = $verbinding->prepare($queryvlucht);
+$datavlucht->execute([$psg]);
+while($rijV = $datavlucht->fetch()){
+    $vluchtnummer = $rijV['vluchtnummer'];
+}
+
+
 
 
 $psgnummer = $_SESSION['psgnummer'];
@@ -48,7 +57,7 @@ $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, 
             <form method="post">
 
                 <label for="vluchtnummer">Nieuw vluchtnummer:</label>
-                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" value="<?php echo $vluchtnummer;?>"required>
+                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" required>
 
                 <label for="stoel">Stoel:</label>
                 <select name="stoel" id="stoel">
@@ -62,7 +71,7 @@ $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, 
                         group by stoel ';
                     
                         $dataS = $verbinding->prepare($querystoelen);
-                        $dataS->execute([$vluchtnummer]);
+                        $dataS->execute([$_POST['vluchtnummer']]);
                         while($rijS = $dataS->fetch()){
                             $stoel = $rijS['stoel'];
                             echo '
