@@ -17,9 +17,8 @@ if (
     !empty($_POST['maxkgpp']) &&
     !empty($_POST['maxtotkg']) &&
     !empty($_POST['datum']) &&
-    !empty($_POST['tijd']) &&
-    !empty($_POST['maatschappij'])
-) {
+    !empty($_POST['maatschappij']) 
+) { echo 'het werkt';
         $bestemming = $_POST['bestemming'];
         $gate = $_POST['gatecode'];
         $maxntl = $_POST['maxntl'];
@@ -34,6 +33,9 @@ if (
         $sql = $verbinding->prepare($query1);
         
         $sql->execute([$nieuwvlucht, $bestemming, $date, $maxntl, $maxkgpp, $maxtotkg, NULL, $maatschappij]);
+} else{
+    echo 'het werkt niet';
+    var_dump($_POST);
 }
 ?>
 
