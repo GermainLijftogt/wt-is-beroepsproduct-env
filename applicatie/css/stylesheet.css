@@ -1,0 +1,520 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #21A0A3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* header */
+
+header {
+  overflow: hidden;
+  background-color: #24FAFF;
+}
+header a {
+  float: left;
+  font-size: 20px;
+  color: #A13E00;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown .dropbutton {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: #A13E00;
+  padding: 14px 16px;
+  background-color: inherit;
+}
+a:hover, .dropdown:hover .dropbutton {
+  background-color: #F0650C;
+}
+.content {
+  display: none;
+  position: absolute;
+  background-color: #24FAFF;
+  z-index: 1;
+}
+.content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.content a:hover {
+  background-color: #F0650C;
+}
+.dropdown:hover .content {
+  display: block;
+}
+header a.split {
+  float: right;
+  background-color: #A13E00;
+  color: black;
+}
+header a.split:hover{
+  background-color: #F0650C;
+}
+@media screen and (max-width:700px) {
+  header a{
+    font-size: 10px;
+  }
+  .dropdown .dropbutton{
+    font-size: 10px;
+  }
+}
+
+/* footer */
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  background-color: #24FAFF;
+  margin-top: auto;
+}
+footer a {
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  width: 100%;
+}
+footer :hover{
+  background-color: #F0650C;
+}
+
+/* Form */
+
+.form{
+  border-radius: 5px;
+  background-color: #A13E00;
+  padding: 20px;
+}
+ input[type=text], select, textarea{
+  width: 100%;
+  border: 1px solid #24FAFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  resize: vertical
+}
+ input[type=number], select, textarea{
+  width: 100%;
+  border: 1px solid #24FAFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  resize: vertical
+}
+ input[type=password], select, textarea{
+  width: 100%;
+  border: 1px solid #24FAFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  resize: vertical
+}
+ input[type=datetime-local],select, textarea{
+  width: 100%;
+  border: 1px solid #24FAFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  resize: vertical
+}
+ 
+ input[type=submit] {
+  font-weight: bold;
+  background-color: #24FAFF;
+  color: black;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+ input[type=submit]:hover {
+  background-color: #A13E00;
+}
+
+/* Begin */
+
+.beginbtn{
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.begin{
+  text-decoration: none;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #F0650C;
+  color: #333333;
+  height: 200px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+}
+.begin:hover{
+  background-color: #A13E00;
+}
+@media screen and (max-width: 700px) {
+  .beginbtn{
+    display: grid;
+    justify-content: center;
+    align-content: space-evenly;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .begin{
+    font-size: 15px;
+    width: 100px;
+    height: 50px;
+  }
+}
+
+/* Home */
+
+/* komende vluchten */
+
+.homevluchten{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.homevluchten img{
+  height: 133px;
+  width: 200px;
+}
+h2{
+  margin-top: 50px;
+}
+
+/* bekende bestemmingen */
+
+.homebestemmingen{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.homebestemmingen img{
+  height: 133px;
+  width: 200px;
+}
+@media screen and (max-width: 1200px) {
+  .homevluchten{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .homevluchten img{
+    height: 63px;
+    width: 100px;
+  }
+  .homebestemmingen{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .homebestemmingen img{
+    height: 63px;
+    width: 100px;
+  }
+}
+
+/* zelfservice */
+
+.zelfservice{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.zelfservice p{
+  font-size: 20px;
+}
+
+/* Vluchtenoverzicht */
+
+.filter{
+  display: flex;
+  margin-top: 30px;
+}
+.filter .dropdown .dropbutton{
+  background-color:#A13E00;
+  color: black;
+  border-radius: 15px;
+  margin-top: 5px;
+  height: 50px;
+}
+.searchbar{
+  width: 100%;
+  display: flex;
+}
+.searchbar input[type=submit]{
+  height: 50px;
+  margin-top: 5px;
+}
+.searchbar input[type=number]{
+  margin-bottom: 0px;
+}
+.tabel{
+  border-collapse: collapse;
+  margin: 25px 0;
+  min-width: 100%;
+  font-size: 1em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  margin-top: 0px;
+}
+td a{
+  text-decoration: none;
+  color: #A13E00;
+}
+.tabel thead tr{
+  background-color: #F0650C;
+  color: black;
+  text-align: left;
+  border-bottom: 1px solix white;
+}
+.tabel th,
+.tabel td {
+    padding: 10px 20px;
+}
+.tabel tbody tr {
+  border-bottom: 1px solid white;
+}
+@media screen and (max-width: 600px) {
+  .tabel{
+    font-size: 10px;
+  }
+  .searchbar input[type=submit]{
+    font-size: 10px;
+    height: 20px;
+  }
+  .searchbar input[type=number]{
+    font-size: 10px;
+    height: 20px;
+  }
+  .filter .dropdown .dropbutton{
+    height: 20px;
+  }
+}
+
+/* Vluchten */
+
+.vluchten{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vluchten h1{
+  margin-bottom: 25px;
+}
+.vluchten p{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.vluchten img{
+  margin-top: 100px;
+  border: 5px solid #F0650C;
+  border-radius: 7px;
+  min-width: 350px;
+}
+@media screen and (max-width: 600px) {
+  .vluchten img{
+    min-width: 100px;
+    min-height: 63px;
+  }
+}
+/* vlucht medewerker */
+
+.newpsg{
+  float: right;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #F0650C;
+  color: #333333;
+  height: 100px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  text-align: center;
+}
+.newpsg:hover{
+  background-color: #A13E00;
+}
+
+/* Inloggen */
+
+.inloggen{
+  display: flex;
+  justify-content: center;
+}
+
+/* Medewerker */
+
+.medewerkerbtn{
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.medewerker{
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #F0650C;
+  color: #333333;
+  height: 200px;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  text-align: center;
+  justify-content: center;
+}
+.medewerker:hover{
+  animation-name: button;
+  animation-duration: 2s;
+  animation-iteration-count: infinite
+}
+@keyframes button {
+ from{
+  height: 205px;
+  width: 310px;
+  background-color: #A13E00;
+ }
+ to{
+  height: 210px;
+  width: 320px;
+  background-color: #24FAFF;
+ }
+}
+
+/* vluchten medewerker */
+
+.vluchtaanmkn{
+  float: right;
+  margin-right: 25px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #F0650C;
+  color: #333333;
+  height: 100px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  text-align: center;
+}
+.vluchtaanmkn:hover{
+  background-color: #A13E00;
+}
+@media screen and (max-width:350px) {
+  .vluchtaanmkn{
+    margin-right: 0px;
+    font-size: 15px;
+    width: 100px;
+    height: 50px;
+  }
+}
+/* vlucht aanmaken */
+
+.hvluchtmkn{
+  display: flex;
+  justify-content: center;
+}
+
+/* passagierdetail */
+
+.psginfo{
+  display: flex;
+  justify-content: center;
+  font-size: large;
+}
+.psgdetail{
+  width: 200px;
+}
+.incheck{
+  float: right;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #F0650C;
+  color: #333333;
+  height: 100px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  text-align: center;
+}
+.incheck:hover{
+  background-color: #A13E00;
+}
+.vluchtinfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+}
+.vluchtinfo h2{
+  margin-bottom: 10px;
+}
+.vluchtinfo p{
+  font-size: large;
+  margin-bottom: 10px;
+}
+.vluchtinfo img{
+  margin-top: 50px;
+  border: 5px solid #F0650C;
+  border-radius: 7px;
+}
+@media screen and (max-width: 300px){
+  .incheck{
+    font-size: 13px;
+    width: 110px;
+    height: 33px;
+  }
+}
