@@ -1,0 +1,1 @@
+<!-- op deze pagina worden alle functies gemaakt die te maken hebben met de businesslaag -->

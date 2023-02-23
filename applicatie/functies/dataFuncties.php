@@ -1,3 +1,4 @@
+<!-- op deze pagina worden alle functies gemaakt die data uit de database halen -->
 <?php
 require_once 'db_connectie.php';
 
@@ -14,7 +15,7 @@ function Bagageincheckenquery($psg, $verbinding){
     $data->execute([$psg]);
     $row = $data->fetch();
 
-
+return $row;
     $naam = $row['naam'];
     $max_gewicht_pp = $row['max_gewicht_pp'];
     $max = $row['max_objecten_pp'];
