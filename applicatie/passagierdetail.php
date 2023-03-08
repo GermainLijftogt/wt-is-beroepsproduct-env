@@ -26,17 +26,8 @@ $inchecktijdstip = $row['inchecktijdstip'];
 $maatschappij = $row['maatschappijcode'];
 $vliegveld = $row['vliegveld'];
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Passagierdetail</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
         <?=
-        getHeader();
+        getHeader("Passagierdetail");
         ?>
         <h1><?php echo $naam ?>:</h1>
         <div class="psginfo">

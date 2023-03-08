@@ -5,16 +5,9 @@ $passagier = $_SESSION['psg'] === true;
 ?>
 
 <!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?= 
-        getHeader();        
+        getHeader("Home");        
         ?>
         <div class="medewerkerbtn">
             <?php

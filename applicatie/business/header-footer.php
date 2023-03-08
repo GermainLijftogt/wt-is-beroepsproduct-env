@@ -3,15 +3,23 @@ require_once 'db_connectie.php';
 
 
 
-function getHeader(){
-    $header ='';
+function getHeader($titel){
+    $header ='<!DOCTYPE html>
+    <html lang="nl">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>'.$titel.'</title>
+            <link rel="stylesheet" href="css/stylesheet.css">
+        </head>
+        <body>';
     $medewerker = false;
     if (isset($_SESSION['login'])){
         $medewerker = $_SESSION['login'];
     }
     if ($medewerker){
         if(isset($_SESSION['psgnummer'])){
-        $header ='
+        $header = $header.'
         <header>
         <a href="medewerker.php">CheckinGelre</a>
         <div class="dropdown">
@@ -29,7 +37,7 @@ function getHeader(){
         </header>
         ';
         } else{
-            $header ='
+            $header =$header.'
         <header>
         <a href="medewerker.php">CheckinGelre</a>
         <div class="dropdown">
@@ -45,7 +53,7 @@ function getHeader(){
         ';
         }
     } else if(!$medewerker){
-        $header = '
+        $header = $header.'
         <header>
         <a href="home.php">CheckinGelre</a>
         <div class="dropdown">

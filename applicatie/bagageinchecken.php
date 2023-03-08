@@ -1,8 +1,7 @@
 <?php
 require_once 'db_connectie.php';
-require_once 'functies/headermedewerker.php';
-require_once 'functiesfooter.php';
-require_once 'functies/Bagageinchecken.php';
+require_once 'Data/headermedewerker.php';
+require_once 'Data/Bagageinchecken.php';
 global $verbinding;
 $psg = $_SESSION['psgnummer'];
 
@@ -11,17 +10,9 @@ $naam = Bagageincheckenquery($psg, $verbinding);
 
 
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inchecken</title>
-        <link rel="stylesheet" href="/css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-            getHeader();
+            getHeader("Inchecken");
         ?>
 
         <h1>Bagage van <?php echo $naam?>  inchecken</h1>

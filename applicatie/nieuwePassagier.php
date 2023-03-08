@@ -7,17 +7,9 @@ global $verbinding;
 newPsg($verbinding);
 
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Nieuwe Passagier</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-        getHeader();
+        getHeader("Nieuwe Passagier");
         ?>
 
         <h1>Nieuwe passagier</h1>

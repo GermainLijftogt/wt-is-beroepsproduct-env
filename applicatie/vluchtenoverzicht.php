@@ -48,17 +48,9 @@ while($rij = $data->fetch()){
 
 $html_table = $html_table . "</table>";
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Vluchtenoverzicht</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-        getHeader();
+        getHeader("Vluchtenoverzicht");
         ?>
         
         <h1>Vluchtenoverzicht</h1>

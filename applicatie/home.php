@@ -1,23 +1,13 @@
 <?php
 require_once 'db_connectie.php';
-require_once 'functies/header-footer.php';
-require_once 'functies/top6Functie.php';
+require_once 'business/header-footer.php';
+require_once 'business/top6Functie.php';
 global $verbinding;
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
         <?=
-            getHeader();
+            getHeader("Home");
         ?>
 
         <article>
@@ -27,7 +17,7 @@ global $verbinding;
         <h2>Komende vluchten:</h2>
         <div class="homevluchten">
             <?=
-                top6Vluchten($verbinding);
+                returnVlucht($verbinding);
             ?>
         </div>
         <h2>bekende bestemmingen:</h2>

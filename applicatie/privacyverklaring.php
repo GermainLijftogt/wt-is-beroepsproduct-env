@@ -1,17 +1,9 @@
 <?php
 require_once 'functies/header-footer.php';
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Privacyverklaring</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-        getHeader();
+        getHeader("Privacyverklaring");
         ?>
 
         <article>

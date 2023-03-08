@@ -34,17 +34,9 @@ if(!empty($_POST['gewicht'])) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Zelfservice</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-        getHeader();
+        getHeader("Zelfservice");
         ?>
         <div class="zelfservice">
             <h1>Zelfservice Inchecken</h1>

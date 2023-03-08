@@ -8,14 +8,14 @@ function top6Vluchten($verbinding){
     order by vertrektijd ASC
     ';
     $dataV = $verbinding->query($queryV);
-    $vluchten = '';
+    return $dataV;
+}
+// businessfunctie
+function returnVlucht($verbinding){
+    $dataV = top6Vluchten($verbinding);
     while($rijV = $dataV->fetch()){
         $vluchten = $vluchten . returnVlucht($rijV);
     }
-    return $vluchten;
-}
-// businessfunctie
-function returnVlucht($rijV){
     $vluchtnummer = $rijV['vluchtnummer'];
     $vertrektijd = $rijV['vertrektijd'];
     $gatecode = $rijV['gatecode'];

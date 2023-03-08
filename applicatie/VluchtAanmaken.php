@@ -37,17 +37,9 @@ if (
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Vlucht aanmaken</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
+
         <?=
-        getHeader();
+        getHeader("Vlucht aanmaken");
         ?>
 
         <h1 class="hvluchtmkn">Vlucht aanmaken</h1>
