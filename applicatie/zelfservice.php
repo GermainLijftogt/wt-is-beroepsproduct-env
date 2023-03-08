@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 
 $psgnummer = $_GET['psgnummer'];
 
@@ -42,8 +43,8 @@ if(!empty($_POST['gewicht'])) {
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
         <div class="zelfservice">
             <h1>Zelfservice Inchecken</h1>
@@ -64,8 +65,8 @@ if(!empty($_POST['gewicht'])) {
                 <input type="submit" value="Inchecken">
             </form>
         </div>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

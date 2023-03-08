@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 
 global $verbinding;
 
@@ -34,8 +35,8 @@ if(isset($_GET['vluchtnummer'])){
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-            require_once 'headermedewerker.php';
+        <?=
+            getHeader();
         ?>
 
         <article class="vluchten">
@@ -59,8 +60,8 @@ if(isset($_GET['vluchtnummer'])){
             <img src="Images/<?php echo $maatschappijcode; ?>.jpg" alt="Vliegtuig van <?php echo $maatschappijcode ?>">
         </article>
         
-        <?php
-        require_once 'footer.php';
+        <?=
+            getFooter();        
         ?>
     </body>
 </html>

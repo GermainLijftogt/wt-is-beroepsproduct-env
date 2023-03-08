@@ -1,3 +1,6 @@
+<?php
+require_once 'functies/header-footer.php';
+?>
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -7,8 +10,8 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
 
         <article>
@@ -41,8 +44,8 @@
             <p>CheckinGelre neemt de bescherming van uw gegevens serieus en neemt passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Als u de indruk heeft dat uw gegevens niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact op met onze klantenservice of via hulp@checkingelre.nl</p>
         </article>
         
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

@@ -1,5 +1,7 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
+$passagier = $_SESSION['psg'] === true;
 ?>
 
 <!DOCTYPE html>
@@ -11,13 +13,14 @@ require_once 'db_connectie.php';
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php 
-        require_once 'headermedewerker.php';
-        
+        <?= 
+        getHeader();        
         ?>
         <div class="medewerkerbtn">
             <?php
-            if ($_SESSION['psg'] === true){
+            // moet dit uit de code?
+            if ($passagier){
+                // moet dit ook uit de code
                 echo '
                     <a href="vluchtenoverzicht.php" class="medewerker">Wilt u vluchten inzien?</a>
                     <a href="passagierdetail.php" class="medewerker">Wilt u passagierdetails inzien?</a>
@@ -34,8 +37,8 @@ require_once 'db_connectie.php';
             }
             ?>
         </div>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

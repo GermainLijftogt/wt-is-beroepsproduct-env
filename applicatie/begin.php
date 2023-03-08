@@ -1,3 +1,7 @@
+<?php
+require_once 'functies/header-footer.php';
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -22,8 +26,8 @@
             <a href="home.php" class="begin">Passagier</a>
             <a href="medewerkerinlog.php" class="begin">Medewerker</a>
         </div>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

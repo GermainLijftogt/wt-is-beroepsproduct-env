@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 global $verbinding;
 
 $query = 'select max(vluchtnummer) as vlucht from Vlucht';
@@ -17,10 +18,6 @@ if (
     !empty($_POST['maxkgpp']) &&
     !empty($_POST['maxtotkg']) &&
     !empty($_POST['datum']) &&
-<<<<<<< HEAD
-=======
-    !empty($_POST['tijd']) &&
->>>>>>> f5b22fa4c0642e13555b9e73ce2e79a13aac1aeb
     !empty($_POST['maatschappij'])
 ) {
         $bestemming = $_POST['bestemming'];
@@ -49,8 +46,8 @@ if (
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
 
         <h1 class="hvluchtmkn">Vlucht aanmaken</h1>
@@ -110,8 +107,8 @@ if (
             </form>
         </div>
 
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

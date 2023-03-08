@@ -1,3 +1,7 @@
+<!-- als iemand naar de index.php gaat moet hij op het homescherm komen. -->
+<?php
+header ('location: begin.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

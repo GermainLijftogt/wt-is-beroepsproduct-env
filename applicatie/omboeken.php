@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 global $verbinding;
 
 $querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
@@ -47,8 +48,8 @@ $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, 
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
 
         <h1>Omboeken passagier</h1>
@@ -83,8 +84,8 @@ $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, 
                 <input type="submit" value="Omboeken">
             </form>
         </div>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

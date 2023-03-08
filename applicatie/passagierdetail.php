@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 global $verbinding;
 
 $psg = $_SESSION['psgnummer'];
@@ -13,6 +14,7 @@ where passagiernummer = ?
 $media = $verbinding->prepare($query);
 $media->execute([$psg]);
 $row = $media->fetch();
+
 
 $psgnummer = $row['passagiernummer'];
 $naam = $row['naam'];
@@ -33,8 +35,8 @@ $vliegveld = $row['vliegveld'];
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
         <h1><?php echo $naam ?>:</h1>
         <div class="psginfo">
@@ -71,8 +73,8 @@ $vliegveld = $row['vliegveld'];
             <p>Er worden snacks en drankjes verzorgd in het vliegtuig</p>
             <img src="Images/<?php echo $maatschappij?>.jpg" alt="vliegtuig van <?php echo $maatschappij?>" height="183" width="275">
         </article>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'functies/header-footer.php';
 ?>
 <?php
 global $verbinding;
@@ -56,8 +57,8 @@ $html_table = $html_table . "</table>";
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        require_once 'headermedewerker.php';
+        <?=
+        getHeader();
         ?>
         
         <h1>Vluchtenoverzicht</h1>
@@ -89,8 +90,8 @@ $html_table = $html_table . "</table>";
         ';
         }
         ?>
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>
