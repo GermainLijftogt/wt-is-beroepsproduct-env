@@ -48,7 +48,7 @@ function getHeader($titel){
                     <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
                 </div>
             </div>
-            <a href="uitloggen.php" class="split">Uitloggen</a>
+            <a href="../applicatie/uitloggen.php" class="split">Uitloggen</a>
         </header>
         ';
         }

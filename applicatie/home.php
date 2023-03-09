@@ -1,7 +1,8 @@
 <?php
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
-require_once 'business/top6Functie.php';
+require_once 'business/top6Vluchten.php';
+require_once 'business/top6Bestemmingen.php';
 global $verbinding;
 
 
@@ -23,7 +24,7 @@ global $verbinding;
         <h2>bekende bestemmingen:</h2>
         <div class="homebestemmingen">
             <?=
-                top6Bestemmingen($verbinding);
+                returnBestemming($verbinding);
             ?>
         </div>
         <?=

@@ -1,6 +1,6 @@
 <?php
 require_once 'db_connectie.php';
-require_once 'functies/header-footer.php';
+require_once 'business/header-footer.php';
 global $verbinding;
 
 $query = 'select max(vluchtnummer) as vlucht from Vlucht';

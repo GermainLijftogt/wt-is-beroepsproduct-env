@@ -1,14 +1,11 @@
 <?php
 require_once 'db_connectie.php';
-require_once 'Data/headermedewerker.php';
-require_once 'Data/Bagageinchecken.php';
+require_once 'business/header-footer.php';
+require_once '../applicatie/business/bagageFunctie.php';
+
 global $verbinding;
 $psg = $_SESSION['psgnummer'];
-
 $naam = Bagageincheckenquery($psg, $verbinding);
-
-
-
 ?>
 
         <?=

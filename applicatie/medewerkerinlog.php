@@ -1,6 +1,6 @@
 <?php
 require_once 'db_connectie.php';
-require_once 'functies/header-footer.php';
+require_once 'business/header-footer.php';
 require_once 'functies/inlogFunctie.php';
 global $verbinding;
 

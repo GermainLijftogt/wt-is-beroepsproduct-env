@@ -1,5 +1,5 @@
 <?php
-require_once 'functies/header-footer.php';
+require_once 'business/header-footer.php';
 ?>
 
         <?=
