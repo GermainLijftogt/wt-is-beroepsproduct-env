@@ -26,6 +26,7 @@ function laatVluchtZien($verbinding){
             if(!isset($_SESSION['psgnummer'])){
                 $vluchtinfo = $vluchtinfo .'
             <a href="nieuwePassagier.php?vluchtnummer='.$vluchtnummer.'" class="newpsg">Passagier toevoegen</a>
+            <a href="allePassagiers.php?vluchtnummer='.$vluchtnummer.'" class="newpsg">alle Passagiers</a>
             ';
             }
         }

@@ -1,12 +1,9 @@
 <?php
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
+require_once 'business/psgNummerCheck.php';
+checkPsgNummer();
 
-
-
-if(!empty($_GET['psgnummer'])){
-    $psgnummer = $_GET['nummer'];
-}
 ?>
 
         <?=
