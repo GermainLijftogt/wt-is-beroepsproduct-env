@@ -1,40 +1,18 @@
 <?php
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
+require_once 'business/newVlucht.php';
+require_once 'business/maxVluchtNr.php';
+require_once 'business/getLuchthavens.php';
+require_once 'business/getGatecode.php';
 global $verbinding;
 
-$query = 'select max(vluchtnummer) as vlucht from Vlucht';
-$data = $verbinding->query($query);
-$rij = $data->fetch();
-$nieuwvlucht = $rij['vlucht']+1;
-$queryL = 'select luchthavencode from Luchthaven';
-$queryG = 'select gatecode from Gate';
+$nieuwvlucht = getMaxVluchtnr($verbinding);
+
+
 $queryM = 'select maatschappijcode from Maatschappij';
 
-if (
-    !empty($_POST['bestemming']) &&
-    !empty($_POST['gatecode']) &&
-    !empty($_POST['maxntl']) &&
-    !empty($_POST['maxkgpp']) &&
-    !empty($_POST['maxtotkg']) &&
-    !empty($_POST['datum']) &&
-    !empty($_POST['maatschappij'])
-) {
-        $bestemming = $_POST['bestemming'];
-        $gate = $_POST['gatecode'];
-        $maxntl = $_POST['maxntl'];
-        $maxkgpp = $_POST['maxkgpp'];
-        $maxtotkg = $_POST['maxtotkg'];
-        $date = $_POST['datum'];
-        $maatschappij = $_POST['maatschappij'];
-
-        $query1 = 'INSERT INTO Vlucht (vluchtnummer, bestemming, gatecode, max_aantal, max_gewicht_pp, max_totaalgewicht, vertrektijd, maatschappijcode)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                        ';
-        $sql = $verbinding->prepare($query1);
-        
-        $sql->execute([$nieuwvlucht, $bestemming, $date, $maxntl, $maxkgpp, $maxtotkg, NULL, $maatschappij]);
-}
+newVlucht($verbinding, $nieuwvlucht);
 ?>
 
 
@@ -48,26 +26,14 @@ if (
 
                 <label for="bestemming">Bestemming:</label>
                 <select name="bestemming" id="bestemming">
-                    <?php
-                        $dataL = $verbinding->query($queryL);
-                        while($rijL = $dataL->fetch()){
-                            $luchthaven= $rijL['luchthavencode'];
-                            echo'
-                            <option value="'.$luchthaven.'">'.$luchthaven.'</option>
-                            ';
-                        }
+                    <?=
+                       getLuchthavens($verbinding); 
                     ?>
                 </select>
                 <label for="gatecode">Gatecode:</label>
                 <select name="gatecode" id="gatecode">
-                    <?php
-                        $dataG = $verbinding->query($queryG);
-                        while($rijG = $dataG->fetch()){
-                            $gatecode = $rijG['gatecode'];
-                            echo'
-                            <option value="'.$gatecode.'">'.$gatecode.'</option>
-                            ';
-                        }
+                    <?=
+                        getGatecode($verbinding);
                     ?>
                 </select>
                 

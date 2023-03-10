@@ -1,7 +1,7 @@
 <?php
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
-require_once 'functies/inlogFunctie.php';
+require_once 'business/inlogFunctie.php';
 global $verbinding;
 
 inloggen($verbinding);
@@ -19,11 +19,6 @@ inloggen($verbinding);
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        if (!empty($_POST['Balie']) && !empty($_POST['wachtwoord'])){
-            echo $foutmelding_login;
-            }
-        ?>
         <header>
             <a href="medewerkerinlog.php">CheckinGelre</a>
             <div class="dropdown">

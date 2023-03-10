@@ -1,7 +1,7 @@
 <?php
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
-require_once 'functies/psgFunctie.php';
+require_once 'business/psgFunctie.php';
 global $verbinding;
 
 newPsg($verbinding);

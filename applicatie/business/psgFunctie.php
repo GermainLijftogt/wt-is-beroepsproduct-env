@@ -1,8 +1,9 @@
 <?php
+require_once '../applicatie/data/selectMaxPsg.php';
+require_once '../applicatie/data/insertPsg.php';
+require_once '../applicatie/data/selectStoel.php';
 function newPsg($verbinding){
-    $querypsg = 'select max(passagiernummer) as passagiernummer from passagier';
-    $data = $verbinding->query($querypsg);
-    $row = $data->fetch();
+    $row = selectMaxPsg($verbinding);
     $newpsg = $row['passagiernummer'] + 1;
     $vluchtnummer = $_GET['vluchtnummer'];
 
@@ -12,24 +13,13 @@ function newPsg($verbinding){
         !empty($_POST['geslacht']) &&
         !empty($_POST['stoel'])
         ) {
-        $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, balienummer, stoel, inchecktijdstip)
-        VALUES (?, ? ,? ,? , ?, ?, ?)';
-        $sql = $verbinding->prepare($query);
-        $sql->execute([$newpsg, $_POST['name'], $_POST['vluchtnummer'], $_POST['geslacht'], $_SESSION['balie'], $_POST['stoel'], date('d-m-y h:i:s')]);
+        insertPsg($verbinding,$newpsg);
     }
 }
 
 function stoelen($verbinding){
-    $querystoelen = 'select stoel 
-    from passagier 
-    where stoel NOT IN 
-    (select stoel
-    from passagier
-    where vluchtnummer = ?)
-    group by stoel ';
-
-    $dataS = $verbinding->prepare($querystoelen);
-    $dataS->execute([$vluchtnummer]);
+    $vluchtnummer = $_GET['vluchtnummer'];
+    $dataS = getStoelen($verbinding,$vluchtnummer);
     $stoelen = '';
     while($rijS = $dataS->fetch()){
         $stoel = $rijS['stoel'];

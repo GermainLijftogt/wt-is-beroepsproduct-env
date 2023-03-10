@@ -2,10 +2,7 @@
 <?php
 require_once '../applicatie/data/bagageQuery.php';
 function Bagageincheckenquery($psg, $verbinding){
-    
-    
-    
-    $row = bagageSelectQuery($verbinding);
+    $row = bagageSelectQuery($verbinding,$psg);
 
     $naam = $row['naam'];
     $max_gewicht_pp = $row['max_gewicht_pp'];
@@ -15,11 +12,9 @@ function Bagageincheckenquery($psg, $verbinding){
 
 
     if(!empty($_POST['gewicht'])) {
-        echo 'het lukt';
         $gewicht = $_POST['gewicht'];
         if($tot_gewicht_bagage + $gewicht <= $max_gewicht_pp){
-            echo 'bagage lukt';
-            bagageInsertQuery($verbinding);
+            bagageInsertQuery($verbinding,$psg, $objects, $gewicht);
         }
     }
     return $naam;

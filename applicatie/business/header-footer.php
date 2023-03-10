@@ -30,7 +30,7 @@ function getHeader($titel){
                     <a href="passagierdetail.php">Passagierdetail</a>
                     <a href="bagageinchecken.php">Bagage inchecken</a>
                     <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
-                    <a href="omboeken.php" class="medewerker">omboeken</a>
+                    <a href="omboeken.php">omboeken</a>
                 </div>
             </div>
             <a href="uitloggen.php" class="split">Uitloggen</a>
@@ -48,7 +48,7 @@ function getHeader($titel){
                     <a href="vluchtAanmaken.php">Vlucht aanmaken</a>
                 </div>
             </div>
-            <a href="../applicatie/uitloggen.php" class="split">Uitloggen</a>
+            <a href="uitloggen.php" class="split">Uitloggen</a>
         </header>
         ';
         }

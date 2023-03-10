@@ -1,5 +1,5 @@
 <?php
-function bagageSelectQuery($verbinding){
+function bagageSelectQuery($verbinding,$psg){
     $query = 'select P.passagiernummer, P.naam, V.max_gewicht_pp, M.max_objecten_pp, MAX(B.objectvolgnummer) as max_object_nummer, SUM(b.gewicht) as gewicht_bagage
             from passagier P 
             join Vlucht V on P.vluchtnummer = V.vluchtnummer
@@ -12,7 +12,7 @@ function bagageSelectQuery($verbinding){
     $row = $data->fetch();
     return $row;
 }  
-function bagageInsertQuery($verbinding){
+function bagageInsertQuery($verbinding,$psg,$objects,$gewicht){
     $query1 = 'INSERT INTO BagageObject (passagiernummer, objectvolgnummer, gewicht)
                             VALUES (?, ?, ?)';
             $sql = $verbinding->prepare($query1);
