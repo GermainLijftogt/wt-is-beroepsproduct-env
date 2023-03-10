@@ -1,6 +1,5 @@
 <?php
 function inloggen($verbinding){
-    $foutmelding_login = "";
     $medewerker = false;
     $_SESSION['psg'] = false;
 
@@ -20,8 +19,7 @@ function inloggen($verbinding){
         $balie = $_POST['balie'];
         $wachtwoord = $_POST['wachtwoord'];
 
-        $data = $verbinding->prepare("select wachtwoord from Balie where balienummer = ?");
-        $data->execute([$balie]);
+        $data = inlogQuery($verbinding, $balie);
         
         while ($row = $data->fetch()) {
             $hashed = $row['wachtwoord'];
