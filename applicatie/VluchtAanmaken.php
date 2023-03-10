@@ -5,6 +5,7 @@ require_once 'business/newVlucht.php';
 require_once 'business/maxVluchtNr.php';
 require_once 'business/getLuchthavens.php';
 require_once 'business/getGatecode.php';
+require_once 'business/getMaatschappij.php';
 global $verbinding;
 
 $nieuwvlucht = getMaxVluchtnr($verbinding);
@@ -51,14 +52,8 @@ newVlucht($verbinding, $nieuwvlucht);
 
                 <label for="maatschappij">Maatschappij:</label>
                 <select name="maatschappij" id="maatschappij">
-                    <?php
-                        $dataM = $verbinding->query($queryM);
-                        while($rijM = $dataM->fetch()){
-                            $maatschappijcode = $rijM['maatschappijcode'];
-                            echo'
-                            <option value="'.$maatschappijcode.'">'.$maatschappijcode.'</option>
-                            ';
-                        }
+                    <?=
+                    getMaatschappij($verbinding);
                     ?>
                 
                 <input type="submit" value="Vlucht aanmaken">
