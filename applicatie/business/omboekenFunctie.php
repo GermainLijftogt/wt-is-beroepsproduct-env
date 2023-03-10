@@ -1,11 +1,7 @@
 <?php
-require_once '../applicatie/data/selectMaxPsg.php';
-require_once '../applicatie/data/insertOmboeken.php';
+require_once '../applicatie/data/omboekenUpdate.php';
 require_once '../applicatie/data/selectOmboeken.php';
 function omboeken($verbinding){
-    $row = selectMaxPsg($verbinding);
-    $psg = $row['passagiernummer'];
-    $newpsg = $psg+1;
     $psgnummer = $_SESSION['psgnummer'];
     $data = selectOmboeken($verbinding, $psgnummer);
     while($rij = $data->fetch()){
@@ -14,10 +10,11 @@ function omboeken($verbinding){
         $vluchtnummer = $rij['vluchtnummer'];
     }
     if(
-        !empty($_POST['vluchtnummer']) &&
         !empty($_POST['stoel'])
     ){
-        insertOmboeken($verbinding, $newpsg, $name, $geslacht);
+        $newVlucht = $_GET['vluchtnummer'];
+        $stoel = $_POST['stoel'];
+        omboekenPsg($verbinding, $psgnummer, $newVlucht, $stoel);
     }
     return $psgnummer;
 }

@@ -1,4 +1,5 @@
 <?php
+require_once '../applicatie/data/inlogQuery.php';
 function inloggen($verbinding){
     $medewerker = false;
     $_SESSION['psg'] = false;

@@ -7,7 +7,6 @@ function medewerker($passagier){
             <a href="passagierdetail.php" class="medewerker">Wilt u passagierdetails inzien?</a>
             <a href="bagageinchecken.php" class="medewerker">Wilt u de bagage van passagier inchecken?</a>
             <a href="vluchtAanmaken.php" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
-            <a href="omboeken.php" class="medewerker">Wilt u omboeken?</a>
         ';
     }
     else {

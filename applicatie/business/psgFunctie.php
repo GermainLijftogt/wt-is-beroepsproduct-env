@@ -8,12 +8,15 @@ function newPsg($verbinding){
     $vluchtnummer = $_GET['vluchtnummer'];
 
     if(
-        !empty($_POST['vluchtnummer']) &&
         !empty($_POST['name']) &&
         !empty($_POST['geslacht']) &&
         !empty($_POST['stoel'])
-        ) {
-        insertPsg($verbinding,$newpsg);
+        ) {  
+            $name = $_POST['name'];
+            $geslacht = $_POST['geslacht'];
+            $balie = $_SESSION['balie'];
+            $stoel = $_POST['stoel'];
+            insertPsg($verbinding,$newpsg,$name,$vluchtnummer,$geslacht,$balie,$stoel);
     }
 }
 

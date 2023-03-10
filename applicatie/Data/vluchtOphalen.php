@@ -12,4 +12,26 @@ function vluchtOphalen($verbinding, $vluchtnummer){
         $row = $media->fetch();
         return $row;
 }
+function vluchtZonderPsgOphalen($verbinding, $vluchtnummer){
+    $query = 'select vluchtnummer, bestemming, gatecode, vertrektijd, maatschappijcode
+        from vlucht
+        where vluchtnummer = ?
+        ';
+
+        $media = $verbinding->prepare($query);
+        $media->execute([$vluchtnummer]);
+        $row = $media->fetch();
+        return $row;
+}
+function psgOphalen($verbinding, $vluchtnummer){
+    $query = 'select max(passagiernummer) as passagiernummer
+    from passagier
+    where vluchtnummer = ?
+    ';
+    $media = $verbinding->prepare($query);
+    $media->execute([$vluchtnummer]);
+    $row = $media->fetch();
+    $psg = $row['passagiernummer'];
+    return $psg;
+}
 ?>

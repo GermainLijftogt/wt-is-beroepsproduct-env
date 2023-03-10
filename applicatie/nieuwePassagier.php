@@ -16,10 +16,7 @@ newPsg($verbinding);
 
         <h1>Nieuwe passagier</h1>
         <div class="form">
-        <form method="post">
-
-            <label for="vluchtnummer">Vluchtnummer:</label>
-            <input id="vluchtnummer" placeholder="bijvoorbeeld: 123456" type="number" name="vluchtnummer" value="<?php echo $vluchtnummer?>" required>
+        <form method="post" >
 
             <label for="name">Naam:</label>
             <input id="name" placeholder="bijvoorbeeld: Jan de Wit" type="text" name="name" required>

@@ -1,8 +1,9 @@
 <?php
-function insertPsg($verbinding,$newpsg){
+function insertPsg($verbinding,$newpsg,$name,$vluchtnummer,$geslacht,$balie,$stoel){
     $query = 'INSERT INTO passagier (passagiernummer, naam, vluchtnummer, geslacht, balienummer, stoel, inchecktijdstip)
         VALUES (?, ? ,? ,? , ?, ?, ?)';
         $sql = $verbinding->prepare($query);
-        $sql->execute([$newpsg, $_POST['name'], $_POST['vluchtnummer'], $_POST['geslacht'], $_SESSION['balie'], $_POST['stoel'], date('d-m-y h:i:s')]);
+        $sql->execute([$newpsg, $name, $vluchtnummer, $geslacht, $balie, $stoel, date('d-m-y h:i:s')]);
 }
+
 ?>

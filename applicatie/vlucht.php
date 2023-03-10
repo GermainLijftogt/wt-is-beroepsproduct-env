@@ -5,18 +5,13 @@ require_once 'business/vluchtLatenZien.php';
 
 global $verbinding;
 
-
 ?>
-
-
         <?=
             getHeader("Vlucht");
         ?>
-
         <article class="vluchten">
             <?=laatVluchtZien($verbinding);?>
         </article>
-        
         <?=
             getFooter();        
         ?>

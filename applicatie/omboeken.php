@@ -6,21 +6,16 @@ require_once 'business/omboekenFunctie.php';
 require_once 'business/checkMedewerker.php';
 geenMedewerker();
 global $verbinding;
-$vluchtnummer = omboeken($verbinding);
+$psgnummer = omboeken($verbinding);
 ?>
-
-
-        <?=
-        getHeader("VLucht aanmaken");
-        ?>
+    <?=
+    getHeader("VLucht aanmaken");
+    ?>
 
         <h1>Omboeken passagier</h1>
-        <p>Dit is voor vlucht <?php echo $vluchtnummer;?></p>
+        <p>Dit is voor passagier <?php echo $psgnummer;?></p>
         <div class="form">
             <form method="post">
-
-                <label for="vluchtnummer">Nieuw vluchtnummer:</label>
-                <input id="vluchtnummer" placeholder="Bijvoorbeeld: 111" type="number" name="vluchtnummer" required>
 
                 <label for="stoel">Stoel:</label>
                 <select name="stoel" id="stoel">

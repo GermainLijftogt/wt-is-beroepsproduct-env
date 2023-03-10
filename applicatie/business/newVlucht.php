@@ -18,7 +18,7 @@ function newVlucht($verbinding, $nieuwvlucht){
         $date = date("Y-m-d H:i:s", strtotime($_POST["datum"]));
         $maatschappij = $_POST['maatschappij'];
 
-        insertVlucht($nieuwvlucht, $bestemming, $gate, $maxntl, $maxkgpp, $maxtotkg, $data, $maatschappij);
+        insertVlucht($verbinding, $nieuwvlucht, $bestemming, $gate, $maxntl, $maxkgpp, $maxtotkg, $date, $maatschappij);
 
 }
 }
