@@ -6,6 +6,8 @@ require_once 'business/maxVluchtNr.php';
 require_once 'business/getLuchthavens.php';
 require_once 'business/getGatecode.php';
 require_once 'business/getMaatschappij.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 global $verbinding;
 
 $nieuwvlucht = getMaxVluchtnr($verbinding);

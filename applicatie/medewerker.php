@@ -2,6 +2,8 @@
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
 require_once 'business/medewerkerFunctie.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 $passagier = $_SESSION['psg'];
 ?>
 

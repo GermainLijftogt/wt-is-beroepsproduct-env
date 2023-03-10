@@ -3,6 +3,8 @@ require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
 require_once 'business/psgDetailOphalen.php';
 require_once 'business/incheckIf.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 global $verbinding;
 
 $psg = $_SESSION['psgnummer'];

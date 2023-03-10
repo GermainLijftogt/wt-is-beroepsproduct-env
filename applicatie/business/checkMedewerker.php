@@ -8,4 +8,10 @@ if (isset($_SESSION['login'])){
     return $medewerker;
 }
 }
+function geenMedewerker(){
+    $medewerker = checkMedewerker();
+    if(!$medewerker){
+        header ('location: index.php');
+    }
+}
 ?>

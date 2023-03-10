@@ -15,7 +15,7 @@ $naam = Bagageincheckenquery($psgnummer, $verbinding);
             <p>Hier kan<?= $naam?> inchecken</p>
         </div>
         <div class="form">
-        <form action="begin.html">
+        <form action="begin.php">
             
                 <label for="typebagage">Type Bagage:</label>
                 <select name="typebagage" id="typebagage">

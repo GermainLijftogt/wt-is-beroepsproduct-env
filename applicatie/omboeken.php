@@ -3,6 +3,8 @@ require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
 require_once 'business/psgFunctie.php';
 require_once 'business/omboekenFunctie.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 global $verbinding;
 $vluchtnummer = omboeken($verbinding);
 ?>

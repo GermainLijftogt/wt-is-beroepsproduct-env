@@ -2,7 +2,7 @@
 require_once 'db_connectie.php';
 require_once 'business/header-footer.php';
 require_once 'business/psgNummerCheck.php';
-checkPsgNummer();
+$psgnummer = checkPsgNummer();
 
 ?>
 
@@ -14,7 +14,7 @@ checkPsgNummer();
             <p>hier kan u uzelf inchecken</p>
         </div>
         <div class="form">
-        <form method="GET" action="zelfservice.php?psgnummer=<?php $vluchtnummer;?>">
+        <form method="GET" action="zelfservice.php">
 
             <label for="psgnummer">Uw passagiersnummer:</label>
             <input id="psgnummer" placeholder="11111" type="number" name="psgnummer" required>

@@ -14,6 +14,7 @@ function medewerker($passagier){
         return '
             <a href="vluchtenoverzicht.php" class="medewerker">Wilt u vluchten inzien?</a>
             <a href="vluchtAanmaken.php" class="medewerker">Wilt u een nieuwe vlucht aanmaken?</a>
+            <a href="passagieroverzicht.php" class="medewerker">Wilt u een passagier zoeken?</a>
         ';
     }
 }
