@@ -1,5 +1,7 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 
 global $verbinding;
 $maxbalie = 10;

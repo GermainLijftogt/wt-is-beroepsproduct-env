@@ -1,54 +1,10 @@
 <?php
 require_once 'db_connectie.php';
-?>
-<?php
+require_once 'business/header-footer.php';
+require_once 'business/inlogFunctie.php';
 global $verbinding;
 
-$foutmelding_login = "";
-$medewerker = false;
-$_SESSION['psg'] = false;
-
-if (isset($_SESSION['login'])){
-    $medewerker = $_SESSION['login'];
-}
-
-if($medewerker){
-    header("location: medewerker.php");
-}
-
-if (
-    !empty($_POST['balie']) &&
-    !empty($_POST['wachtwoord'])
-) {
-    
-    $balie = $_POST['balie'];
-    $wachtwoord = $_POST['wachtwoord'];
-
-    $data = $verbinding->prepare("select wachtwoord from Balie where balienummer = ?");
-    $data->execute([$balie]);
-    
-    while ($row = $data->fetch()) {
-        $hashed = $row['wachtwoord'];
-        if (password_verify($wachtwoord, $hashed)) {
-            $_SESSION['login'] = true;
-            $_SESSION['balie'] = $balie;
-        }
-
-    } 
-    
-    if (isset($_SESSION['login'])){
-        $medewerker = $_SESSION['login'];
-        header('location: medewerker.php');
-    }
-
-}
-
-if(
-    !empty($_POST['psgnummer'])
-) {
-    $_SESSION['psgnummer'] = $_POST['psgnummer'];
-    $_SESSION['psg'] = true;
-}
+inloggen($verbinding);
 
 
 ?>
@@ -63,11 +19,6 @@ if(
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
-        <?php
-        if (!empty($_POST['Balie']) && !empty($_POST['wachtwoord'])){
-            echo $foutmelding_login;
-            }
-        ?>
         <header>
             <a href="medewerkerinlog.php">CheckinGelre</a>
             <div class="dropdown">
@@ -94,8 +45,8 @@ if(
                 <input type="submit" value="Inloggen">
             </form>
         </div>
-        <?php
-        require_once 'footer.php';
+        <?=
+            getFooter();
         ?>
     </body>
 </html>

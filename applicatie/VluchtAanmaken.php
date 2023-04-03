@@ -1,15 +1,21 @@
 <?php
 require_once 'db_connectie.php';
+require_once 'business/header-footer.php';
+require_once 'business/newVlucht.php';
+require_once 'business/maxVluchtNr.php';
+require_once 'business/getLuchthavens.php';
+require_once 'business/getGatecode.php';
+require_once 'business/getMaatschappij.php';
+require_once 'business/checkMedewerker.php';
+geenMedewerker();
 global $verbinding;
 
-$query = 'select max(vluchtnummer) as vlucht from Vlucht';
-$data = $verbinding->query($query);
-$rij = $data->fetch();
-$nieuwvlucht = $rij['vlucht']+1;
-$queryL = 'select luchthavencode from Luchthaven';
-$queryG = 'select gatecode from Gate';
+$nieuwvlucht = getMaxVluchtnr($verbinding);
+
+
 $queryM = 'select maatschappijcode from Maatschappij';
 
+<<<<<<< HEAD
 if (
     !empty($_POST['bestemming']) &&
     !empty($_POST['gatecode']) &&
@@ -37,19 +43,14 @@ if (
     echo 'het werkt niet';
     var_dump($_POST);
 }
+=======
+newVlucht($verbinding, $nieuwvlucht);
+>>>>>>> 6beb4a8548dc6fb744a1ca96c76b36a91cba6f73
 ?>
 
-<!DOCTYPE html>
-<html lang="nl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Vlucht aanmaken</title>
-        <link rel="stylesheet" href="css/stylesheet.css">
-    </head>
-    <body>
-        <?php
-        require_once 'headermedewerker.php';
+
+        <?=
+        getHeader("Vlucht aanmaken");
         ?>
 
         <h1 class="hvluchtmkn">Vlucht aanmaken</h1>
@@ -58,26 +59,14 @@ if (
 
                 <label for="bestemming">Bestemming:</label>
                 <select name="bestemming" id="bestemming">
-                    <?php
-                        $dataL = $verbinding->query($queryL);
-                        while($rijL = $dataL->fetch()){
-                            $luchthaven= $rijL['luchthavencode'];
-                            echo'
-                            <option value="'.$luchthaven.'">'.$luchthaven.'</option>
-                            ';
-                        }
+                    <?=
+                       getLuchthavens($verbinding); 
                     ?>
                 </select>
                 <label for="gatecode">Gatecode:</label>
                 <select name="gatecode" id="gatecode">
-                    <?php
-                        $dataG = $verbinding->query($queryG);
-                        while($rijG = $dataG->fetch()){
-                            $gatecode = $rijG['gatecode'];
-                            echo'
-                            <option value="'.$gatecode.'">'.$gatecode.'</option>
-                            ';
-                        }
+                    <?=
+                        getGatecode($verbinding);
                     ?>
                 </select>
                 
@@ -95,22 +84,16 @@ if (
 
                 <label for="maatschappij">Maatschappij:</label>
                 <select name="maatschappij" id="maatschappij">
-                    <?php
-                        $dataM = $verbinding->query($queryM);
-                        while($rijM = $dataM->fetch()){
-                            $maatschappijcode = $rijM['maatschappijcode'];
-                            echo'
-                            <option value="'.$maatschappijcode.'">'.$maatschappijcode.'</option>
-                            ';
-                        }
+                    <?=
+                    getMaatschappij($verbinding);
                     ?>
                 
                 <input type="submit" value="Vlucht aanmaken">
             </form>
         </div>
 
-        <?php
-        require_once 'footer.php';
+        <?=
+        getFooter();
         ?>
     </body>
 </html>
